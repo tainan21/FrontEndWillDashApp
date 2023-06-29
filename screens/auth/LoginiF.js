@@ -116,14 +116,11 @@ const LoginScreen = ({ navigation }) => {
         // behavior={Platform.OS === "ios" ? "padding" : "height"}
         style={styles.container}
       >
+        
           <ImageBackground
           source={require('../../assets/background.png')}
           style={styles.backgroundImage} >
-        <ScrollView style={{ flex: 1, width: "100%" }}>
-          <ProgressDialog visible={isloading} label={"Login ..."} />
-          <StatusBar></StatusBar>
-       
-          <View style={styles.TopBarContainer}>
+                    <View style={styles.TopBarContainer}>
           <TouchableOpacity
             onPress={() => {
               navigation.goBack();
@@ -136,26 +133,16 @@ const LoginScreen = ({ navigation }) => {
             />
           </TouchableOpacity>
         </View>
-          <View style={styles.welconeContainer}>
-            <View>
-              <Text style={styles.welcomeText}>Bem vindo a WillDash</Text>
-              <Text style={styles.welcomeParagraph}>
-                Entre na WillDash
-              </Text>
-            </View>
-            <View>
-              <Image style={styles.logo} source={header_logo} />
-            </View>
-          </View>
-          <View style={styles.screenNameContainer}>
-            <Text style={styles.screenNameText}>Login</Text>
-          </View>
-          <View style={styles.formContainer}>
+        <View style={styles.containerLogin}>
+          <ProgressDialog visible={isloading} label={"Logando..."} />
+          <StatusBar></StatusBar>
+            <Text style={styles.screenNameText}>Que bom que voltou!</Text>
             <CustomAlert message={error} type={"error"} />
             <CustomInput
               value={email}
               setValue={setEmail}
-              placeholder={"Username"}
+              placeholder={"Email"}
+              width={"80%"}
               placeholderTextColor={colors.muted}
               radius={5}
             />
@@ -163,31 +150,21 @@ const LoginScreen = ({ navigation }) => {
               value={password}
               setValue={setPassword}
               secureTextEntry={true}
-              placeholder={"Password"}
+              width={"80%"}
+              placeholder={"Senha"}
               placeholderTextColor={colors.muted}
               radius={5}
             />
             <View style={styles.forgetPasswordContainer}>
-              <Text
-                onPress={() => navigation.navigate("forgetpassword")}
-                style={styles.ForgetText}
-              >
-                Forget Password?
-              </Text>
+              <Text onPress={() => navigation.navigate("forgetpassword")} style={styles.ForgetText}>Esqueceu a sua senha??</Text>
             </View>
-          </View>
-        </ScrollView>
-        <View style={styles.buttomContainer}>
+            <View style={styles.buttomContainer}>
           <CustomButton text={"Login"} onPress={loginHandle} />
         </View>
-        <View style={styles.bottomContainer}>
-          <Text>Don't have an account?</Text>
-          <Text
-            onPress={() => navigation.navigate("signup")}
-            style={styles.signupText}
-          >
-            signup
-          </Text>
+        <View style={styles.bottomContainerNewAcc}>
+          <Text style={styles.bottomTextNewAcc}>Não tem uma conta?</Text>
+          <Text onPress={() => navigation.navigate("signup")} style={styles.signupText}>Criar Conta!</Text>
+        </View>
         </View>
         </ImageBackground>
       </KeyboardAvoidingView>
@@ -196,61 +173,30 @@ const LoginScreen = ({ navigation }) => {
 };
 
 export default LoginScreen;
-
 const styles = StyleSheet.create({
   container: {
     width: "100%",
-    flexDirecion: "row",
-    backgroundColor: colors.light,
-    alignItems: "center",
+    height: "100%",
+    
+  },
+  containerLogin:{
+    width: "100%",
+    height: "100%",
+    alignItems: 'center',
     justifyContent: "center",
     flex: 1,
+    flexDirection: "column",
+    padding: 40,
   },
   backgroundImage: {
-    padding: 50,
+    width: "100%",
+    height: "100%",
+    flex: 1,
     resizeMode: 'cover',
     alignItems: 'center',
     justifyContent: 'center',
   },
-  TopBarContainer: {
-    width: "100%",
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "flex-start",
-    alignItems: "center",
-  },
-  welconeContainer: {
-    width: "100%",
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "space-around",
-    alignItems: "center",
-    height: "30%",
-    // padding:15
-  },
-  formContainer: {
-    flex: 3,
-    justifyContent: "flex-start",
-    alignItems: "center",
-    display: "flex",
-    width: "100%",
-    flexDirecion: "row",
-    padding: 5,
-  },
-  logo: {
-    resizeMode: "contain",
-    width: 80,
-  },
-  welcomeText: {
-    fontSize: 42,
-    fontWeight: "bold",
-    color: colors.muted,
-  },
-  welcomeParagraph: {
-    fontSize: 15,
-    fontWeight: "500",
-    color: colors.primary_shadow,
-  },
+  
   forgetPasswordContainer: {
     marginTop: 10,
     width: "100%",
@@ -262,35 +208,40 @@ const styles = StyleSheet.create({
   ForgetText: {
     fontSize: 15,
     fontWeight: "600",
+    color: colors.white,
   },
   buttomContainer: {
-    display: "flex",
-    justifyContent: "center",
-    width: "100%",
-  },
-  bottomContainer: {
     marginTop: 10,
+    width: "100%",
     display: "flex",
     flexDirection: "row",
     justifyContent: "center",
+    alignItems: "center",
+  },
+  
+  bottomTextNewAcc: {
+    textAlign: 'right',
+    color: colors.white,
+  },
+  bottomContainerNewAcc: {
+    marginTop: 10,
+    width: "100%",
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "flex-end",
+    alignItems: "center",
   },
   signupText: {
-    marginLeft: 2,
-    color: colors.primary,
-    fontSize: 15,
+    marginLeft: 4,
+    color: colors.secondary,
+    fontSize: 16,
     fontWeight: "600",
-  },
-  screenNameContainer: {
-    marginTop: 10,
-    width: "100%",
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "flex-start",
-    alignItems: "center",
   },
   screenNameText: {
     fontSize: 30,
     fontWeight: "800",
-    color: colors.muted,
+    bottom: 25,
+    textAlign: 'auto',
+    color: colors.white,
   },
 });

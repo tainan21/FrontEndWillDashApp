@@ -26,6 +26,8 @@ import ViewUsersScreen from "../screens/admin/ViewUsersScreen";
 import CategoriesScreen from "../screens/user/CategoriesScreen";
 import EditCategoryScreen from "../screens/admin/EditCategoryScreen";
 import MyWishlistScreen from "../screens/profile/MyWishlistScreen";
+import QrCodeScreen from "../screens/admin/QrCodeScreen.js";
+import ProductDetailsScreen from "../screens/products/myFile";
 
 const Stack = createNativeStackNavigator();
 
@@ -48,6 +50,8 @@ const Routes = () => {
         <Stack.Screen name="addproduct" component={AddProductScreen} />
         <Stack.Screen name="viewproduct" component={ViewProductScreen} />
         <Stack.Screen name="editproduct" component={EditProductScreen} />
+        <Stack.Screen name="QrCodeScreen" component={QrCodeScreen} />
+        <Stack.Screen name="ProductDetailsScreen" component={ProductDetailsScreen} />
         <Stack.Screen name="tab" component={Tabs} />
         <Stack.Screen name="cart" component={CartScreen} />
         <Stack.Screen name="checkout" component={CheckoutScreen} />

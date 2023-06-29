@@ -25,6 +25,7 @@ import { bindActionCreators } from "redux";
 import * as actionCreaters from "../../states/actionCreaters/actionCreaters";
 import SearchableDropdown from "react-native-searchable-dropdown";
 import { SliderBox } from "react-native-image-slider-box";
+import CenterIcon from "../../assets/icons/bar_center_icon.png";
 
 const category = [
   {
@@ -137,9 +138,7 @@ const HomeScreen = ({ navigation, route }) => {
             name={user["name"]}
             email={user["email"]}
           />
-  
         </TouchableOpacity>
-      
         <TouchableOpacity
           style={styles.cartIconContainer}
           onPress={() => navigation.navigate("cart")}
@@ -166,112 +165,36 @@ const HomeScreen = ({ navigation, route }) => {
               autoplayInterval={6000}
             />
           </View>
-          <View style={styles.primaryTextContainer}>
-            <Text style={styles.primaryText}>Perto de você!</Text>
+          <View style={styles.containerAtividades}>
+            <Text style={styles.primaryText}>Atividades</Text>
+            <Text style={styles.textMore}>Ver Todas</Text>
           </View>
-          <View style={styles.categoryContainer}>
-            <FlatList
-              showsHorizontalScrollIndicator={false}
-              style={styles.flatListContainer}
-              horizontal={true}
-              data={category}
-              keyExtractor={(item, index) => `${item}-${index}`}
-              renderItem={({ item, index }) => (
-                <View style={{ marginBottom: 10 }} key={index}>
-                  <CustomIconButton
-                    key={index}
-                    text={item.title}
-                    image={item.image}
-                    onPress={() =>
-                      navigation.jumpTo("categories", { categoryID: item })
-                    }
-                  />
-                </View>
-              )}
-            />
-            <View style={styles.emptyView}></View>
+          <View style={styles.containerAtividades}>
+            <View style={styles.listAtividades}>
+              <Text style={styles.textProduct}>LegPress</Text>
+              <Text style={styles.textProduct}>LegPress</Text>
+              <Text style={styles.textProduct}>LegPress</Text>
+              <Text style={styles.textProduct}>LegPress</Text>
+            </View>
+            <View style={styles.listCoins}>
+                <View style={styles.coinsProducts}>
+                  <Image source={CenterIcon} style={StyleSheet.tabIconStyle} />
+                  <Text style={styles.textCoins}>350</Text>
+                </View>        
+                <View style={styles.coinsProducts}>
+                  <Image source={CenterIcon} style={StyleSheet.tabIconStyle} />
+                  <Text style={styles.textCoins}>350</Text>
+                </View>        
+                <View style={styles.coinsProducts}>
+                  <Image source={CenterIcon} style={StyleSheet.tabIconStyle} />
+                  <Text style={styles.textCoins}>350</Text>
+                </View>        
+                <View style={styles.coinsProducts}>
+                  <Image source={CenterIcon} style={StyleSheet.tabIconStyle} />
+                  <Text style={styles.textCoins}>350</Text>
+                </View>             
+            </View>
           </View>
-          <View style={styles.primaryTextContainer}>
-            <Text style={styles.primaryText}>Faz sucesso entre os Pets</Text>
-          </View>
-          {products.length === 0 ? (
-            <View style={styles.productCardContainerEmpty}>
-              <Text style={styles.productCardContainerEmptyText}>Não farejamos nada próximos a você!</Text>
-            </View>
-          ) : (
-            <View style={styles.productCardContainer}>
-              <FlatList
-                refreshControl={
-                  <RefreshControl
-                    refreshing={refeshing}
-                    onRefresh={handleOnRefresh}
-                  />
-                }
-                showsHorizontalScrollIndicator={false}
-                initialNumToRender={5}
-                horizontal={true}
-                data={products.slice(0, 4)}
-                keyExtractor={(item) => item._id}
-                renderItem={({ item, index }) => (
-                  <View
-                    key={item._id}
-                    style={{ marginLeft: 5, marginBottom: 10, marginRight: 5 }}
-                  >
-                    <ProductCard
-                      name={item.title}
-                      image={`${network.serverip}/uploads/${item.image}`}
-                      price={item.price}
-                      quantity={item.quantity}
-                      style={styles.productCardDesign}
-                      onPress={() => handleProductPress(item)}
-                      onPressSecondary={() => handleAddToCat(item)}
-                    />
-                  </View>
-                )}
-              />
-              <View style={styles.emptyView}></View>
-            </View>
-          )}
-          <View style={styles.primaryTextContainer}>
-            <Text style={styles.primaryText}>Visualizados por ultimo</Text>
-          </View>
-          {products.length === 0 ? (
-            <View style={styles.productCardContainerEmpty}>
-              <Text style={styles.productCardContainerEmptyText}>Não farejamos nada próximos a você!</Text>
-            </View>
-          ) : (
-            <View style={styles.productCardContainer}>
-              <FlatList
-                refreshControl={
-                  <RefreshControl
-                    refreshing={refeshing}
-                    onRefresh={handleOnRefresh}
-                  />
-                }
-                showsHorizontalScrollIndicator={false}
-                initialNumToRender={5}
-                horizontal={true}
-                data={products.slice(0, 4)}
-                keyExtractor={(item) => item._id}
-                renderItem={({ item, index }) => (
-                  <View
-                    key={item._id}
-                    style={{ marginLeft: 5, marginBottom: 10, marginRight: 5 }}
-                  >
-                    <ProductCard
-                      name={item.title}
-                      image={`${network.serverip}/uploads/${item.image}`}
-                      price={item.price}
-                      quantity={item.quantity}
-                      onPress={() => handleProductPress(item)}
-                      onPressSecondary={() => handleAddToCat(item)}
-                    />
-                  </View>
-                )}
-              />
-              <View style={styles.emptyView}></View>
-            </View>
-          )}
         </ScrollView>
       </View>
     </View>
@@ -301,6 +224,32 @@ const styles = StyleSheet.create({
   toBarText: {
     fontSize: 15,
     fontWeight: "600",
+  },
+  tabIconStyle: {
+    width: 10,
+    height: 10,
+  },
+  containerAtividades:{
+    display: "flex",
+    justifyContent: "space-around",
+    alignItems: "center",
+    width: "100%",
+    flexDirection: "row",
+    marginTop: 25,
+    paddingHorizontal: 30,
+  },
+  listAtividades: {
+    
+  },
+  listCoins: {
+
+  },
+  coinsProducts:{
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    flexDirection: "row",
+
   },
   topbarlogoContainer: {
     display: "flex",
@@ -377,6 +326,23 @@ const styles = StyleSheet.create({
     color: colors.light,
     paddingBottom: 10,
   },
+  textProduct:{
+    fontSize: 20,
+    color: colors.light,
+    marginBottom: 30,
+    top: 20,
+  },
+  textCoins: {
+    fontSize: 20,
+    color: colors.light,
+    marginTop: 15,
+    bottom: 7,
+  },
+  textMore:{
+    fontSize: 20,
+    color: colors.light,
+    textDecorationLine: "underline"
+  },
   primaryText: {
     fontSize: 20,
     color: colors.light,
@@ -433,6 +399,7 @@ const styles = StyleSheet.create({
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
+    marginTop: 35,
   },
   cartItemCountContainer: {
     position: "absolute",

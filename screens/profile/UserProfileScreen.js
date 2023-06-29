@@ -3,7 +3,10 @@ import {
   Text,
   View,
   StatusBar,
+  Image,
+  setTimeout,
   TouchableOpacity,
+  Modal, ActivityIndicator
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import UserProfileCard from "../../components/UserProfileCard/UserProfileCard";
@@ -11,15 +14,33 @@ import { Ionicons } from "@expo/vector-icons";
 import OptionList from "../../components/OptionList/OptionList";
 import { colors } from "../../constants";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import imageLogin from "../../assets/icons/Carlos.jpg"
+import ProgressCircle from "react-native-progress/Circle";
+
+
 
 const UserProfileScreen = ({ navigation, route }) => {
   const [userInfo, setUserInfo] = useState({});
   const { user } = route.params;
+  const [isLoading, setLoading] = useState(false);
+  const [loadingLabel, setLoadingLabel] = useState("");
+
+ 
+  const handlePress = () => {
+    setLoading(true);
+    setLoadingLabel("Essa opção está em desenvolvimento...");
+
+    setTimeout(() => {
+      setLoading(false);
+      setLoadingLabel("");
+    }, 5000);
+  };
+
 
   const convertToJSON = (obj) => {
     try {
       setUserInfo(JSON.parse(obj));
-    } catch (e) {
+    } catch (e) { 
       setUserInfo(obj);
     }
   };
@@ -36,45 +57,68 @@ const UserProfileScreen = ({ navigation, route }) => {
           <Ionicons name="menu-sharp" size={30} color={colors.primary} />
         </TouchableOpacity>
       </View>
-      <View style={styles.screenNameContainer}>
-        <Text style={styles.screenNameText}>Profile</Text>
-      </View>
+    
       <View style={styles.UserProfileCardContianer}>
         <UserProfileCard
-          Icon={Ionicons}
+          image={imageLogin}
           name={userInfo?.name}
           email={userInfo?.email}
         />
       </View>
       <View style={styles.OptionsContainer}>
         <OptionList
-          text={"My Account"}
+          text={"Minha Conta"}
           Icon={Ionicons}
           iconName={"person"}
           onPress={() => navigation.navigate("myaccount", { user: userInfo })}
         />
         <OptionList
-          text={"Wishlist"}
+          text={"Lista de Desejos"}
           Icon={Ionicons}
           iconName={"heart"}
           onPress={() => navigation.navigate("mywishlist", { user: userInfo })}
         />
-        {/* !For future use --- */}
-        {/* <OptionList
+        {/* !For future use --- 
+       <OptionList
           text={"Settings"}
           Icon={Ionicons}
           iconName={"settings-sharp"}
-          onPress={() => console.log("working....")}
+          onPress={handlePress}
         />
         <OptionList
           text={"Help Center"}
           Icon={Ionicons}
           iconName={"help-circle"}
-          onPress={() => console.log("working....")}
-        /> */}
-        {/* !For future use ---- End */}
+          onPress={handlePress}
+        /> 
+        <Modal visible={isLoading} transparent={true}>
+        <View
+          style={{
+            flex: 1,
+            justifyContent: "center",
+            alignItems: "center",
+            backgroundColor: "rgba(0, 0, 0, 0.5)",
+          }}
+        >
+          <View
+            style={{
+              backgroundColor: "white",
+              padding: 20,
+              borderRadius: 10,
+              flexDirection: "row",
+              alignItems: "center",
+            }}
+          >
+            <ActivityIndicator animating={true} color="black" />
+            <Text style={{ marginLeft: 10 }}>{loadingLabel}</Text>
+          </View>
+        </View>
+      </Modal>
+     
+     
+        !For future use ---- End */}
         <OptionList
-          text={"Logout"}
+          text={"Sair"}
           Icon={Ionicons}
           iconName={"log-out"}
           onPress={async () => {
@@ -93,11 +137,18 @@ const styles = StyleSheet.create({
   container: {
     width: "100%",
     flexDirecion: "row",
-    backgroundColor: colors.light,
+    backgroundColor: colors.primary_shadow,
     alignItems: "center",
     justifyContent: "flex-start",
     padding: 20,
     flex: 1,
+    paddingTop: 55,
+  },
+  buttonIcon: {
+    height: 80,
+    width: 80,
+    resizeMode: "cover",
+    padding: 20,
   },
   TopBarContainer: {
     width: "100%",

@@ -13,7 +13,8 @@ import userIconActive from "../../assets/icons/bar_profile_icon_active.png";
 import MyCenterScreen from "../../screens/user/MyOrderScreen";
 import MyOrderScreen from "../../screens/user/MyOrderScreen";
 import CategoriesScreen from "../../screens/user/CategoriesScreen";
-
+import QrCodeScreen from "../../screens/admin/QrCodeScreen.js";
+import ProductDetailsScreen from "../../screens/products/myFile";
 const Tab = createBottomTabNavigator();
 
 const Tabs = ({ navigation, route }) => {
@@ -80,7 +81,7 @@ const Tabs = ({ navigation, route }) => {
                   <Ionicons
                     name="cart-outline"
                     size={29}
-                    color={colors.primary}
+                    color={colors.primary_light}
                   />
                 ) : (
                   <Ionicons
@@ -139,20 +140,22 @@ const Tabs = ({ navigation, route }) => {
         // Wishlist is ready yet!
         <Tab.Screen
           name="pallet"
-          component={MyCenterScreen}
+        //  component={ProductDetailsScreen}
+      component={MyCenterScreen}
           initialParams={{ user: user }}
         />
       }
 
       {
         // Wishlist is ready yet!
-        <Tab.Screen
+       <Tab.Screen
           name="myorder"
-          component={MyOrderScreen}
+         // component={QrCodeScreen}
+            component={MyOrderScreen}
           initialParams={{ user: user }}
         />
-      }
-  
+      }  
+ 
       <Tab.Screen
         name="user"
         component={UserProfileScreen}

@@ -58,7 +58,7 @@ const LoginScreen = ({ navigation }) => {
         behavior={Platform.OS === "ios" ? "position" : "height"}
         style={styles.container}
       >  */}
-        <ScrollView style={{ flex: 1, width: "100%",backgroundColor: "#040C2C" }}>
+        <View  style={styles.ScrollContainer}>
           <ProgressDialog visible={isloading} label={"Login ..."} />
           <StatusBar></StatusBar>
           <View style={styles.ViewlogoLow}>
@@ -75,7 +75,7 @@ const LoginScreen = ({ navigation }) => {
           </View>
           <View style={styles.welconeContainer}>
             <View>
-              <Text style={styles.welcomeText}>Bem-vind@ á Willdash</Text>
+              <Text style={styles.welcomeText}>Bem-vind@ á WillDash</Text>
               <Text style={styles.welcomeParagraph}>
                 Aqui você transforma 
               </Text>
@@ -85,12 +85,12 @@ const LoginScreen = ({ navigation }) => {
             </View>
             <View></View>
           </View>
-         
-        </ScrollView>
-        <View style={styles.buttomContainer}>
-          <CustomButton style={styles.bottaoContainerWhite} text={"Login"}onPress={() => navigation.navigate("loginif")} />
-          <CustomButton style={styles.signupText} text={"Cadastre-se"}onPress={() => navigation.navigate("signup")} />
+          <View style={styles.buttomContainer}>
+            <CustomButton style={styles.bottaoContainerWhite} text={"Login"}onPress={() => navigation.navigate("loginif")} />
+            <CustomButton style={styles.signupText} text={"Cadastre-se"}onPress={() => navigation.navigate("signup")} />
+          </View>
         </View>
+       
     {/*   </KeyboardAvoidingView>   */}
     </InternetConnectionAlert>
   );
@@ -99,14 +99,13 @@ const LoginScreen = ({ navigation }) => {
 export default LoginScreen;
 
 const styles = StyleSheet.create({
-  container: {
-    display: "flex",
-    width: "100%",
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
-    padding: 20,
+  
+  ScrollContainer:{
     flex: 1,
+    height: "100%",
+    width: "100%",
+    justifyContent: "center",
+    backgroundColor: "#040C2C", 
   },
   welconeContainer: {
     width: "100%",
@@ -114,38 +113,28 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
-    padding: 10,
-    margin: 0,
-    //padding:15
+
   },
   formContainer: {
-    flex: 1,
-    justifyContent: "flex-start",
+justifyContent: "flex-start",
     alignItems: "center",
     display: "flex",
     width: "100%",
     flexDirecion: "row",
-    
   },
   ViewLogo: {
     width: "100%",
     display: "flex",
     flexDirection: "row",
     justifyContent: "center",
-   
     alignItems: "center",
-    padding: 10,
-    marginTop: 80,
   },
-
   ViewlogoLow: {
     width: "100%",
     display: "flex",
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
-    padding: 10,
-    marginTop: 20,
   },
   logo: {
     resizeMode: "center",
@@ -168,11 +157,10 @@ const styles = StyleSheet.create({
     fontFamily: "Montserrat",
     fontSize: 16,
     textAlign: "center",
-
-    marginTop: 0,
+   
   },
   forgetPasswordContainer: {
-    marginTop: 0,
+   
     width: "100%",
     display: "flex",
     flexDirection: "row",
@@ -186,9 +174,15 @@ const styles = StyleSheet.create({
 
   buttomContainer: {
     display: "flex",
-    padding: 50,
+    paddingTop: 50,
+    paddingHorizontal: 50,
     backgroundColor: "#040C2C",
     justifyContent: "center",
+    width: "100%",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
   },
   bottomContainer: {
     display: "flex",
@@ -201,16 +195,9 @@ const styles = StyleSheet.create({
     color: "#fff",
     fontSize: 15,
     fontWeight: "600",
+    marginTop: 20,
   },
-  screenNameContainer: {
-    marginBottom: 10,
-    width: "100%",
-    display: "flex",
-       flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "center",
-    
-  },
+
   screenNameText: {
     fontFamily: "Montserrat-semiBold",
     fontSize: 16,

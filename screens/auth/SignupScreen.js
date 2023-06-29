@@ -13,7 +13,7 @@ import React, { useState } from "react";
 import { colors, network } from "../../constants";
 import CustomInput from "../../components/CustomInput";
 import header_logo from "../../assets/logo/logoDog.png";
-import CustomButton from "../../components/CustomButton";
+import CustomButton from "../../components/CustomButtonRegister";
 import { Ionicons } from "@expo/vector-icons";
 import CustomAlert from "../../components/CustomAlert/CustomAlert";
 import InternetConnectionAlert from "react-native-internet-connection-alert";
@@ -84,7 +84,7 @@ const SignupScreen = ({ navigation }) => {
       <KeyboardAvoidingView style={styles.container}>
         <StatusBar></StatusBar>
         <ImageBackground
-          source={require('../../assets/background.png')}
+          source={require('../../assets/background-register.png')}
           style={styles.backgroundImage}
         >
         <View style={styles.TopBarContainer}>
@@ -100,64 +100,60 @@ const SignupScreen = ({ navigation }) => {
             />
           </TouchableOpacity>
         </View>
-        <ScrollView style={{ flex: 1, width: "100%" }}>
+        <View style={styles.containerLogin}>
           
           <View style={styles.screenNameContainer}>
             <View>
-              <Text style={styles.screenNameText}>Se cadastre</Text>
-            </View>
-            <View>
-              <Text style={styles.screenNameParagraph}>
-                Crie sua conta agora na PetAoLado e tenha acesso a todo universo de pet ao seu redor!!! :D
-              </Text>
+              <Text style={styles.screenNameText}>Comece Sua Jornada</Text>
             </View>
           </View>
-          <View style={styles.formContainer}>
             <CustomAlert message={error} type={"error"} />
             <CustomInput
               value={name}
               setValue={setName}
+               width={"97%"}
               placeholder={"Nome"}
               placeholderTextColor={colors.muted}
-              radius={40}
+              radius={5}
             />
             <CustomInput
               value={email}
               setValue={setEmail}
+               width={"97%"}
               placeholder={"Email"}
               placeholderTextColor={colors.muted}
-              radius={40}
+              radius={5}
             />
             <CustomInput
               value={password}
               setValue={setPassword}
               secureTextEntry={true}
+               width={"97%"}
               placeholder={"Senha"}
               placeholderTextColor={colors.muted}
-              radius={40}
+              radius={5}
             />
             <CustomInput
               value={confirmPassword}
               setValue={setConfirmPassword}
               secureTextEntry={true}
               placeholder={"Confirmar Senha"}
+              width={"97%"}
               placeholderTextColor={colors.muted}
-              radius={40}
+              radius={5}
             />
-          </View>
-        </ScrollView>
-        <View style={styles.buttomContainer}>
-          <CustomButton text={"Cadastrar"} onPress={signUpHandle} />
-        </View>
-        <View style={styles.bottomContainer}>
-          <Text>Ainda não tem uma conta??</Text>
+          <View style={styles.buttomContainer}>
+            <CustomButton  text={"Cadastrar"} onPress={signUpHandle} />
+            <View style={styles.bottomContainerNewAcc}>
+          <Text style={styles.bottomTextNewAcc}>Ainda não tem uma conta??</Text>
           <Text
             onPress={() => navigation.navigate("login")}
-            style={styles.signupText}
-          >
-            Login
+            style={styles.signupText}>Login
           </Text>
         </View>
+      </View>
+    </View>
+    
         </ImageBackground>
         
       </KeyboardAvoidingView>
@@ -169,16 +165,22 @@ export default SignupScreen;
 
 const styles = StyleSheet.create({
   container: {
-    flexDirecion: "row",
-    backgroundColor: "#C9D5F3",
-    alignItems: "center",
+    width: "100%",
+    height: "100%",
+  },
+  containerLogin:{
+    width: "100%",
+    height: "100%",
+    alignItems: 'flex-start',
     justifyContent: "center",
-    padding: 20,
-    flex: 1
-    
+    flex: 1,
+    flexDirection: "column",
+    padding: 40,
   },
   backgroundImage: {
-    padding: 20,
+    width: "100%",
+    height: "100%",
+    flex: 1,
     resizeMode: 'cover',
     alignItems: 'center',
     justifyContent: 'center',
@@ -190,18 +192,8 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
     alignItems: "center",
   },
-  welconeContainer: {
-    width: "100%",
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "center",
-    alignItems: "center",
-    height: "35%",
-  },
+ 
   formContainer: {
-    flex: 2,
-    justifyContent: "flex-start",
-    alignItems: "center",
     display: "flex",
     width: "100%",
     flexDirecion: "row",
@@ -225,19 +217,30 @@ const styles = StyleSheet.create({
     fontFamily: "Montserrat-semiBold",
   },
   buttomContainer: {
+    top: 120,
     width: "100%",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
   },
-  bottomContainer: {
+  
+  
+  bottomTextNewAcc: {
+    textAlign: 'right',
+    color: colors.white,
+  },
+  bottomContainerNewAcc: {
     marginTop: 10,
+    width: "100%",
     display: "flex",
     flexDirection: "row",
-    justifyContent: "center",
+    justifyContent: "flex-end",
+    alignItems: "center",
   },
   signupText: {
-    marginLeft: 2,
+    marginLeft: 4,
     color: colors.primary,
-    fontFamily: "Montserrat-semiBold",
-    fontSize: 15,
+    fontSize: 16,
     fontWeight: "600",
   },
   screenNameContainer: {
@@ -251,12 +254,8 @@ const styles = StyleSheet.create({
   screenNameText: {
     fontSize: 30,
     fontWeight: "800",
-    fontFamily: "Montserrat-semiBold",
-    color: "#557CD2",
-  },
-  screenNameParagraph: {
-    marginTop: 5,
-    fontFamily: "Montserrat-semiBold",
-    fontSize: 15,
+    bottom: 25,
+    textAlign: 'auto',
+    color: colors.white,
   },
 });

@@ -26,11 +26,11 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "flex-start",
     alignItems: "center",
+    marginTop: 35,
   },
   avatarContainer: {
     display: "flex",
     width: "20%",
-
     justifyContent: "center",
     alignItems: "flex-start",
     borderRadius: 20,

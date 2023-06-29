@@ -18,7 +18,7 @@ import WishList from "../../components/WishList/WishList";
 const MyWishlistScreen = ({ navigation, route }) => {
   const { user } = route.params;
   const [isloading, setIsloading] = useState(false);
-  const [label, setLabel] = useState("Please wait...");
+  const [label, setLabel] = useState("Por Favor espere..");
   const [refeshing, setRefreshing] = useState(false);
   const [alertType, setAlertType] = useState("error");
   const [error, setError] = useState("");
@@ -138,11 +138,11 @@ const MyWishlistScreen = ({ navigation, route }) => {
       </View>
       <View style={styles.screenNameContainer}>
         <View>
-          <Text style={styles.screenNameText}>My Wishlist</Text>
+          <Text style={styles.screenNameText}>Meus Desejos</Text>
         </View>
         <View>
           <Text style={styles.screenNameParagraph}>
-            View , add or remove products from wishlist for later purchase
+            Seus desejos são a nossa meta
           </Text>
         </View>
       </View>
@@ -150,7 +150,7 @@ const MyWishlistScreen = ({ navigation, route }) => {
       {wishlist.length == 0 ? (
         <View style={styles.ListContiainerEmpty}>
           <Text style={styles.secondaryTextSmItalic}>
-            "There are no product in wishlist yet."
+            "No momento você não tem nada na sua lista de Desejos."
           </Text>
         </View>
       ) : (

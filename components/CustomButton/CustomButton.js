@@ -27,11 +27,11 @@ export default CustomButton;
 const styles = StyleSheet.create({
   container: {
     padding: 15,
-    width: "100%",
+    width: "70%",
     marginBottom: 10,
     alignItems: "center",
     borderRadius: 10,
-    backgroundColor: colors.primary,
+    backgroundColor: colors.secondary ,
   },
   buttonText: {
     fontWeight: "bold",
