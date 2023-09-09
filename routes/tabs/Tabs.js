@@ -10,7 +10,7 @@ import HomeIcon from "../../assets/icons/bar_home_icon.png";
 import CenterIcon from "../../assets/icons/bar_center_icon.png";
 import userIcon from "../../assets/icons/bar_profile_icon.png";
 import userIconActive from "../../assets/icons/bar_profile_icon_active.png";
-import MyCenterScreen from "../../screens/user/MyOrderScreen";
+import MyCenterScreen from "../../screens/user/MyExerciceScreen";
 import MyOrderScreen from "../../screens/user/MyOrderScreen";
 import CategoriesScreen from "../../screens/user/CategoriesScreen";
 import QrCodeScreen from "../../screens/admin/QrCodeScreen.js";
